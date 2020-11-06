@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+  </head>
+  <body>
+  <input type="hidden" id="clientToken" name="clientToken" value="{{$clientToken}}">
+    <form action="/checkouts" id="my-sample-form" method="post">
+          <div>
+        <label for="first-name">First Name</label>
+        <input type="text" id="first-name"/>
+      </div>
+            <div>
+        <label for="last-name">Last Name</label>
+        <input type="text" id="last-name"/>
+      </div>
+            <div>
+        <label for="email">Email</label>
+        <input type="text" id="email"/>
+      </div>
+            <div>
+        <label for="phone">Phone</label>
+        <input type="text" id="phone"/>
+      </div>
+      <label for="card-number">Card Number</label>
+      <div id="card-number"></div>
+
+      <label for="cvv">CVV</label>
+      <div id="cvv"></div>
+
+      <label for="expiration-date">Expiration Date</label>
+      <div id="expiration-date"></div>
+
+      <input type="submit" value="Pay" disabled/>
+    </form>
+
+    <script src="https://js.braintreegateway.com/web/3.68.0/js/client.min.js"></script>
+    <script src="https://js.braintreegateway.com/web/3.68.0/js/hosted-fields.min.js"></script>
+    <script>
+      var form = document.querySelector('#my-sample-form');
+      var submit = document.querySelector('input[type="submit"]');
+      var client_token = "<%= @client_token %>"
+      console.log("client_token", client_token)
+
+
+      braintree.client.create({
+        authorization: client_token
+      }, function (clientErr, clientInstance) {
+        if (clientErr) {
+          console.error(clientErr);
+          return;
+        }
+
+        // This example shows Hosted Fields, but you can also use this
+        // client instance to create additional components here, such as
+        // PayPal or Data Collector.
+
+        braintree.hostedFields.create({
+          client: clientInstance,
+          styles: {
+            'input': {
+              'font-size': '14px'
+            },
+            'input.invalid': {
+              'color': 'red'
+            },
+            'input.valid': {
+              'color': 'green'
+            }
+          },
+          fields: {
+            number: {
+              selector: '#card-number',
+              placeholder: '4111 1111 1111 1111',
+            },
+            cvv: {
+              selector: '#cvv',
+              placeholder: '123'
+            },
+            expirationDate: {
+              selector: '#expiration-date',
+              placeholder: '10/2022'
+            },
+          }
+        }, function (hostedFieldsErr, hostedFieldsInstance) {
+          if (hostedFieldsErr) {
+            console.error(hostedFieldsErr);
+            return;
+          }
+
+          submit.removeAttribute('disabled');
+
+          form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            hostedFieldsInstance.tokenize(function (tokenizeErr, payload) {
+              if (tokenizeErr) {
+                console.error(tokenizeErr);
+                return;
+              }
+
+              // If this was a real integration, this is where you would
+              // send the nonce to your server.
+              console.log('Got a nonce: ' + payload.nonce);
+              var first_name = document.querySelector('#first-name').value
+              var last_name = document.querySelector('#last-name').value
+              var email = document.querySelector('#email').value
+              var phone = document.querySelector('#phone').value
+
+              const data = { payment_method_nonce: payload.nonce, first_name: first_name, last_name: last_name, email: email, phone: phone};
+              fetch('/checkouts', {
+                method: 'POST', // or 'PUT'
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+              })
+              .then(response => response.json())
+              .then(data => {
+                console.log('Success:', data);
+                submit.setAttribute('disabled', true);
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+            });
+          }, false);
+        });
+      });
+    </script>
+  </body>
+</html>
