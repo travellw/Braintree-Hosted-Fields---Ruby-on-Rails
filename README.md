@@ -73,6 +73,8 @@ transaction​ using this stored payment method token
 
 [Using Braintree hosted fields with Ruby on Rails](https://brobertsaz.github.io/2017/rails-with-braintree-hosted-fields/)
 
+[Form Validations with HTML5 and modern Rails](https://www.jorgemanrubia.com/2019/02/16/form-validations-with-html5-and-modern-rails/)
+
 ## Integration Project: Part 2
 >Objective: Option One 
 
