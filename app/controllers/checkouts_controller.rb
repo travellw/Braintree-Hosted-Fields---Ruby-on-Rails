@@ -57,8 +57,10 @@ class CheckoutsController < ApplicationController
       if result.success?
         pp result.transaction
         @transaction = Transaction.new(
+          braintree_id: result.transaction.id,
+          status: result.transaction.status,
           amount: result.transaction.amount,
-          customer_id: @customer.id,
+          customer_id: @customer.id
         )
         puts result.transaction.id
         @transaction.save

@@ -23,7 +23,9 @@ ActiveRecord::Schema.define(version: 2020_11_05_064528) do
   end
 
   create_table "transactions", force: :cascade do |t|
+    t.string "braintree_id"
     t.string "amount"
+    t.string "status"
     t.integer "customer_id"
   end
 

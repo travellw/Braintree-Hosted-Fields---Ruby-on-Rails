@@ -1,39 +1,170 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Checkout</title>
-  </head>
-  <body>
-  <input type="hidden" id="clientToken" name="clientToken" value="{{$clientToken}}">
-    <form action="/checkouts" id="my-sample-form" method="post">
-          <div>
-        <label for="first-name">First Name</label>
-        <input type="text" id="first-name"/>
-      </div>
-            <div>
-        <label for="last-name">Last Name</label>
-        <input type="text" id="last-name"/>
-      </div>
-            <div>
-        <label for="email">Email</label>
-        <input type="text" id="email"/>
-      </div>
-            <div>
-        <label for="phone">Phone</label>
-        <input type="text" id="phone"/>
-      </div>
-      <label for="card-number">Card Number</label>
-      <div id="card-number"></div>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+  font-family: Arial;
+  font-size: 17px;
+  padding: 8px;
+}
 
-      <label for="cvv">CVV</label>
-      <div id="cvv"></div>
+* {
+  box-sizing: border-box;
+}
 
-      <label for="expiration-date">Expiration Date</label>
-      <div id="expiration-date"></div>
+.row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
 
-      <input type="submit" value="Pay" disabled/>
-    </form>
+.col-25 {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+}
+
+.col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+}
+
+.col-75 {
+  -ms-flex: 75%; /* IE10 */
+  flex: 75%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+  padding: 0 16px;
+}
+
+.container {
+  background-color: #f2f2f2;
+  padding: 5px 20px 15px 20px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+}
+
+input[type=text] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.icon-container {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 24px;
+}
+
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+a {
+  color: #2196F3;
+}
+
+hr {
+  border: 1px solid lightgrey;
+}
+
+span.price {
+  float: right;
+  color: grey;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+@media (max-width: 800px) {
+  .row {
+    flex-direction: column-reverse;
+  }
+  .col-25 {
+    margin-bottom: 20px;
+  }
+}
+</style>
+</head>
+<body>
+
+<h2>Braintree Hosted Fields Integration Project</h2>
+<p>This integration uses Braintree's test credit card values. Click the link below to access them.</p>
+<a href="https://developers.braintreepayments.com/guides/credit-cards/testing-go-live/ruby"target="_blank">Braintree's Test Credit Cards</a>         
+
+<div class="row">
+  <div class="col-75">
+    <div class="container">
+      <input type="hidden" id="clientToken" name="clientToken" value="{{$clientToken}}">
+      <form action="/chekouts" id="my-sample-form" method="post">
+      
+        <div class="row">
+          <div class="col-50">
+            <h3>Customer Information</h3>
+            <label for="first-name"><i class="fa fa-user"></i> First Name </label>
+            <input type="text" id="first-name" placeholder="Type your first name here">
+            <label for="last-name"><i class="fa fa-envelope"></i> Last Name </label>
+            <input type="text" id="last-name" placeholder="Type your last name here">
+            <label for="email"><i class="fa fa-address-card-o"></i> Email Address </label>
+            <input type="text" id="email"  placeholder="Type your email address here">
+            <label for="phone"><i class="fa fa-institution"></i> Phone Number </label>
+            <input type="text" id="phone" placeholder="Type your phone number here">
+          </div>
+
+          <div class="col-50">
+            <h3>Payment Information</h3>
+            <label for="fname">Accepted Cards</label>
+            <div class="icon-container">
+              <i class="fa fa-cc-visa" style="color:navy;"></i>
+              <i class="fa fa-cc-amex" style="color:blue;"></i>
+              <i class="fa fa-cc-mastercard" style="color:red;"></i>
+              <i class="fa fa-cc-discover" style="color:orange;"></i>
+            </div>
+            <label for="card-number">Card Number</label>
+            <div id="card-number"></div>
+
+            <label for="cvv">CVV</label>
+            <div id="cvv"></div>
+
+            <label for="expiration-date">Expiration Date</label>
+            <div id="expiration-date"></div>
+            </div>
+          </div>
+          
+        </div>
+        <label>
+        <input type="submit" value="Submit Payment" class="btn" disabled>
+      </form>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+
 
     <script src="https://js.braintreegateway.com/web/3.68.0/js/client.min.js"></script>
     <script src="https://js.braintreegateway.com/web/3.68.0/js/hosted-fields.min.js"></script>

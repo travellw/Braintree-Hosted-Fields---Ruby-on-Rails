@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   root 'checkouts#new'
   resources :checkouts,  only: [:new, :create, :gateway, :show]
 
+  get "new.html.erb" => "checkouts#new"
 
   # #generate and expose a client token
   get "/client_token" => "checkouts#new" do
