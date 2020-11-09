@@ -113,6 +113,7 @@ span.price {
 <body>
 
 <h2>Braintree Hosted Fields Integration Project</h2>
+<h4 class="center error-text"><% @error_message %></h4>
 <p>This integration uses Braintree's test credit card values. Click the link below to access them.</p>
 <a href="https://developers.braintreepayments.com/guides/credit-cards/testing-go-live/ruby"target="_blank">Braintree's Test Credit Cards</a>         
 
@@ -157,9 +158,11 @@ span.price {
             <div id="expiration-date"></div>
             </div>
           </div>
-          
+    
         </div>
         <label>
+      
+        <input type="hidden" id="nonce" name="payment_method_nonce" />
         <input type="submit" value="Submit Payment" class="btn" disabled>
       </form>
     </div>
