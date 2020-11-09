@@ -63,15 +63,16 @@ class CheckoutsController < ApplicationController
           customer_id: @customer.id
         )
         puts result.transaction.id
+        render :success 
         @transaction.save
-        # See result.transaction for details
         puts "Your transaction was created successfully."
       else
+        render :failure
         puts "There was a problem with your payment. Please contact the webmaster."
-        puts result.errors
+        puts @result.errors
       end
     else
-      puts result.errors
+      puts @result.errors
     end
   end
 
