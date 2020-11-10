@@ -12,9 +12,9 @@ Rails.application.routes.draw do
 
   get "new.html.erb" => "checkouts#new"
 
-  get 'checkouts/success' => "checkouts#success"
-  get 'checkouts/failure' => "checkouts#failure"
-  get 'checkouts/server_error' => "checkouts#server_errors"
+  get '/success' => "checkouts#success"
+  get '/failure' => "checkouts#failure"
+  get '/server_error' => "checkouts#server_errors"
 
   # #generate and expose a client token
   get "/client_token" => "checkouts#new" do

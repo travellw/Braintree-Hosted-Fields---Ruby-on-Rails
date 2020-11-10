@@ -82,6 +82,16 @@ label {
   font-size: 17px;
 }
 
+.braintree-hosted-fields-focused {
+  border-bottom: 2px solid #3F51B5;
+  transition: all 200ms ease;
+}
+
+.braintree-hosted-fields-focused.is-invalid {
+  border-bottom: 2px solid #E91E63;
+  transition: all 200ms ease;
+}
+
 .btn:hover {
   background-color: #45a049;
 }
@@ -136,7 +146,6 @@ span.price {
             <label for="phone"><i class="fa fa-institution"></i> Phone Number </label>
             <input type="text" id="phone" placeholder="Type your phone number here" required>
           </div>
-
           <div class="col-50">
             <h3>Payment Information</h3>
             <label for="fname">Accepted Cards</label>
@@ -147,7 +156,7 @@ span.price {
               <i class="fa fa-cc-discover" style="color:orange;"></i>
             </div>
             
-            
+      
             <label for="card-number">Card Number</label>
             <div id="card-number"> </div>
       
@@ -180,6 +189,7 @@ span.price {
     <script>
       var form = document.querySelector('#my-sample-form');
       var submit = document.querySelector('input[type="submit"]');
+
       var client_token = "<%= @client_token %>"
       console.log("client_token", client_token)
 
@@ -199,7 +209,11 @@ span.price {
           client: clientInstance,
           styles: {
             'input': {
-              'font-size': '14px'
+              'font-size': '18px',
+              'color': '#3A3A3A',
+            },
+            '.number': {
+              'font-family': 'monospace'
             },
             'input.invalid': {
               'color': 'red'
@@ -236,6 +250,7 @@ span.price {
             hostedFieldsInstance.tokenize(function (tokenizeErr, payload) {
               if (tokenizeErr) {
                 console.error(tokenizeErr);
+                window.alert("Full Credit Card Details Required")
                 return;
               }
 
@@ -258,10 +273,12 @@ span.price {
               .then(response => response.json())
               .then(data => {
                 console.log('Success:', data);
-                submit.setAttribute('disabled', true);
+                window.location.replace("/success");
+                // submit.setAttribute('disabled', true);
               })
               .catch((error) => {
                 console.error('Error:', error);
+                window.location.replace("/failure");
               });
             });
           }, false);
