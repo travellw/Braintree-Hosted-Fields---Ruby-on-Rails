@@ -3,22 +3,22 @@
 The Branitree Hosted Fields Integration outlined throughout this documentation is my candidate take home assignment for Braintree's API Support team. It is two-parts with the first being a general Hosted Fields Integration built alongside instructions (included) from the hiring team. The second is a PostgreSQL database also built according to instructions (included) provided by the hiring team. 
 
 
-### Achitecture
+## Achitecture
 ---
 #### Technical Stack/Framework Used
-* Fullstack Ruby on Rails 
-* PostgreSQL (Database)
-* Braintree API
+* [Fullstack Ruby on Rails](https://guides.rubyonrails.org/v5.0/getting_started.html) 
+* [PostgreSQL (Database)](https://postgresapp.com/)
+* [Braintree API](https://www.braintreepayments.com/sandbox)
   * Ruby SDK (Server-Side)
   * Javascript SDK (Client-Side)
 #### Languages
-* Ruby
-* SQL
+* [Ruby](https://www.ruby-lang.org/en/documentation/installation/)
+* [SQL](https://postgresapp.com/)
 * Javascript
 * HTML
 * CSS
 
-### API Reference Documentation
+## API Reference Documentation
 ---
 [Braintree's Set Up Your Server for Ruby SDK](https://developers.braintreepayments.com/start/hello-server/ruby)
 
@@ -35,6 +35,8 @@ The Branitree Hosted Fields Integration outlined throughout this documentation i
 [Braintree's Customer.create() for Ruby SDK](https://developers.braintreepayments.com/reference/request/customer/create/ruby)
 
 ---
+<BR>
+
 ## Project Setup
 ---
 ![](app/assets/images/hostedfieldsprojectexample.png) 
@@ -57,10 +59,14 @@ Note: It is important that you have the frameworks and languages associated with
 Happy Testing!
 
 
+<BR>
+
+
 
 
 
 ## Integration Project: Part 1
+---
 
 >Objective: 
 >Your integration should make use of our ​JavaScript v3 SDK Hosted Fields​ solution and any of our server-side languages available on our ​API documentation page​. Hosted Fields is a little different than the Drop-In UI solution described in the ​Getting Started guide​, but many of the basic concepts are the same. 
@@ -87,10 +93,30 @@ transaction​ using this stored payment method token
 >Your integration should appropriately handle client-side and server-side errors and present the
 >relevant information for any errors to your end users.
 
-### Screenshot
+<BR>
+
+### Overview
 ---
-### Installation + Testing
+
+This portion of the project requires no additional installtion steps. After following the steps listed in the project setup section, you should be able to perform tests via the application in your browser.  
+
+### Testing
 ---
+In order to test this integration against the various contraints listed above (or ones you come up with), it is recommended that you use [Braintree Sandbox's test credit card values](https://developers.braintreepayments.com/guides/credit-cards/testing-go-live/ruby) in creating transactions. You can create customers using any criteria as long as the following are provided:
+* First Name
+* Last Name
+* Email 
+* Phone Number (must be a numerical value)
+
+Transactions can be searched within your Braintree Sandbox using the **Transactions** (shown below) button located in the top right corner of the Control Panel's navigation bar. Clicking this button will yield a search panel. This [search panel within the Control Panel](https://articles.braintreepayments.com/control-panel/search) allows you to query transactions and customers that you create from testing. 
+
+![](app/assets/images/braintreenavigationbar.png)
+
+
+You can also search customers and verifications in the same way using the **Vault** button also located on the Control Panel's navigation bar.
+
+![Vault](app/assets/images/vaultsearch.png)
+
 ### Credits
 ---
 [Reddit Article "How I got the Braintree Payments SDK to work...Posted byu/-Zhytomyr-3 years ago"](https://www.reddit.com/r/laravel/comments/5tk6g6/how_i_got_the_braintree_payments_sdk_to_work/) 
@@ -99,7 +125,10 @@ transaction​ using this stored payment method token
 
 [Form Validations with HTML5 and modern Rails](https://www.jorgemanrubia.com/2019/02/16/form-validations-with-html5-and-modern-rails/)
 
+<BR>
+
 ## Integration Project: Part 2
+---
 >Objective: Option One 
 
 >​The goal is to create a SQL database that will accept ​customer information and ​transaction information​. Please provide 2 recommendations for queries we can run to access the data.
