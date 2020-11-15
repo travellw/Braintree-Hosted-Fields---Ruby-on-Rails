@@ -12,7 +12,7 @@ class CheckoutsController < ApplicationController
 #generates a client token   
   def new
     @client_token = gateway.client_token.generate
-    pp 'client_token', @client_token
+    pp 'client_token', @client_token 
   end
 
   def create
@@ -67,11 +67,14 @@ class CheckoutsController < ApplicationController
         render json: {message: "Success"}
       else
         puts "There was a problem with your payment."
-        puts @result.error
+        puts result.errors
+        puts result.errors.for(:customer)
         render json: {message: "Error"}
       end
     else
-      puts @result.error
+      puts "There was a problem with your payment."
+      puts result.errors
+      puts result.errors.for(:customer)
       render json: {message: "Error"}
     end
   end

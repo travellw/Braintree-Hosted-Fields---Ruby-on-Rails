@@ -1,13 +1,13 @@
 # API Support Internal Code Challenge (11/2020)
 
-The Branitree Hosted Fields Integration outlined throughout this documentation is my candidate take home assignment for Braintree's API Support team. It is two-parts with the first being a general Hosted Fields Integration built alongside instructions (included) from the hiring team. The second is a Postgres database also built according to instructions (included) provided by the hiring team. 
+The Branitree Hosted Fields Integration outlined throughout this documentation is my candidate take home assignment for Braintree's API Support team. It is two-parts with the first being a general Hosted Fields Integration built alongside instructions (included) from the hiring team. The second is a PostgreSQL database also built according to instructions (included) provided by the hiring team. 
 
 
 ### Achitecture
 ---
 #### Technical Stack/Framework Used
 * Fullstack Ruby on Rails 
-* Postgres (Database)
+* PostgreSQL (Database)
 * Braintree API
   * Ruby SDK (Server-Side)
   * Javascript SDK (Client-Side)
@@ -35,6 +35,30 @@ The Branitree Hosted Fields Integration outlined throughout this documentation i
 [Braintree's Customer.create() for Ruby SDK](https://developers.braintreepayments.com/reference/request/customer/create/ruby)
 
 ---
+## Project Setup
+---
+![](app/assets/images/hostedfieldsprojectexample.png) 
+Note: It is important that you have the frameworks and languages associated with this project installed on your machine before proceeding. I have included links to each one under the **Architecture** heading to assist with this. 
+
+0. If you haven't already, head over to Braintree and sign up for a [free sandbox account](https://www.braintreepayments.com/sandbox). After signing up, login and locate your important gateway credentials (review the Braintree support article entitled  [Important Gateway Credentials](https://articles.braintreepayments.com/control-panel/important-gateway-credentials) for assistance with this). Keep these values accessible throughout the  project setup and integration testing as they will be needed.
+1. Save the project zip file to your machine and navigate to the project's directory within your terminal.
+2. Once in the project's directory, run the command <br> 
+>`bundle install` 
+3. After all of the ruby gem files have successfully loaded as indicated by your terminal, open the project within your text editor.
+4. From your text editor locate the **braintree.rb** (config>initializers>braintree.rb) file within the project hiearchy and input the corresponding unique gateway credentials associated with your Braintree Sandbox as illustrated below. (see Step 0 for assistance with locating these values)
+
+![](app/assets/images/braintreerbfileexample.png)
+
+5. Return to the project's directory within your terminal and run the command  <br>
+>`rails server` 
+6. The project should be loading on your localhost server as indicated by terminal activity and you should now be able to see the project in your browser as pictured above.
+
+
+Happy Testing!
+
+
+
+
 
 ## Integration Project: Part 1
 
@@ -65,7 +89,7 @@ transaction​ using this stored payment method token
 
 ### Screenshot
 ---
-### Installation
+### Installation + Testing
 ---
 ### Credits
 ---
