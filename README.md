@@ -140,23 +140,90 @@ You can also search customers and verifications in the same way using the **Vaul
 customer information from the database      
 >4. Include 2 SQL queries that can be run to access specific data within the database
 
-### Screenshot 
+### Overview 
 ---
+This integration is designed to store the transaction and customer information created during part one testing within a PostgreSQL database. I provide steps on seeding the database in addition to executable queries using your terminal or pgAdmin, a database visualization tool, below. 
+<br>
 ### Schema
 ---
+**_Customers_**
+| first_name      | last_name | email             | phone            |
+| ----------- | ----------- | ----------- | ----------- |
+| Header      | Title       |             |             |
+| Paragraph   | Text        |             |             |
+<br>
 
-| first_name  |  last_name| |    email    |
-| ----------- | ----------- | ----------- |
-| Header      | Title       |   Name      |
-| Paragraph   | Text        |   Name      | 
+**_Transactions_**
+| braintree_id      | amount | status             | customer_id            |
+| ----------- | ----------- | ----------- | ----------- |
+| Header      | Title       |             |             |
+| Paragraph   | Text        |             |             |
 
+<br>
 
-
-### Installation
+### Seeding the Database
 --- 
 
-### Queries
+While the testing completed in part one results in customer and transaction information being stored in this database, you are not expected to seed the database from testing alone. I have included a file, **seeds.rb** (db>seeds.rb), that should be used instead to seed the database.
+
+0. Navigate to the project directory within your terminal.
+1. Once inside the directory run the command 
+>`rails db:seed`
+2. Rails is not expressive after this command. It simply moves the cursor in preparation for another command. This means we're ready to query the database. 
+
+![](app/assets/images/seeding.png)
+
+
+<br>
+
+### Installation
+---
+For macOS users, I recommend obtaining Postgres.app, an open source macOS application that includes PostgreSQL as well as the PostGIS extension and a few other goodies:
+
+1. Visit http://postgresapp.com/ and download the app's Disk Image file that ends in .dmg.
+2. Double-click the .dmg file to open it, and then drag and drop the app icon into your _applications_ folder.
+3. Double-click the app icon. When Postgres.app opens, click **Initializers** to create and start a PostgreSQL database.
+
+A small elephant icon in your menu bar indicates that you now have a databse running. To use included PostgreSQL command line tools, you'll need to open your Terminal application and run the following code at the prompt.
+
+>`sudo mkdir -p /etc/paths.d &&`
+<BR>
+
+>`echo /Applications/Postgres.app/Contents/Versions/latest/bin | sudo tee /etc/paths.d/postgressapp`
+
+
+
+If you plan to query the databse using your terminal feel free to move on to the _Queries + Testing_ section using the terminal instructions.
+
+0. Visit the pgAdmin site's page for macOS downloads at _https://www.pgadmin.org/download/pgadmin-4-macos/.
+1. Select the latest version and download the installer (look for a Disk Image file that ends in .dmg).
+2. Double-click the .dmg file, click through the prompt to accept the terms, and then drag pgAdmin's elepgant app icon into your _Applications_ folder. 
+3. Double-click the app icon to launch pgAdmin.
+
+_On macOS, when you launch pgAdmin the first time, a dialog might appear that displays "pgAdmin4.app can't be opened because it is from an unidentified developer." Right-click the icon and select **Open**. The next dialog should give you the option to open the app; going forward, your Mac will remember you've granted this permission._
+
+Installation on macOS is relatively simple, but if you encounter any issues, review the documentation for Postgres.app at _https://postgresapp.com/_ and for pgAdmin at _https://wwww.pgadmin.org/docs/_. 
+
+<br>
+
+
+### Queries + Testing
 ___
+
+<br>
+
+
+#### Terminal
+---
+<br>
+
+#### pgAdmin
+---
+
+1. 
+
+<br>
+
 
 ### Credits
 ---
