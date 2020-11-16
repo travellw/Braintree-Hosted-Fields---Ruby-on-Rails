@@ -3,7 +3,7 @@
 The Branitree Hosted Fields Integration outlined throughout this documentation is my candidate take home assignment for Braintree's API Support team. It is two-parts with the first being a general Hosted Fields Integration built alongside instructions (included) from the hiring team. The second is a PostgreSQL database also built according to instructions (included) provided by the hiring team. 
 
 
-## Achitecture
+## Architecture
 ---
 #### Technical Stack/Framework Used
 * [Fullstack Ruby on Rails](https://guides.rubyonrails.org/v5.0/getting_started.html) 
@@ -210,17 +210,88 @@ Installation on macOS is relatively simple, but if you encounter any issues, rev
 ### Queries + Testing
 ___
 
+This section provides instructions for querying the databse depending on whether you have chosen to use the terminal or pgAdmin. The SQL queries are not interchangeable between the two interfaces, meaning that those meant for pgAdmin are not to be used for the terminal and vice versa. 
+
 <br>
 
 
-#### Terminal
+#### **Terminal**
 ---
+
+0. Navigate to the project's directory within your terminal. 
+1. Input the command
+
+>`rails console`
+
+This will convert the terminal into the environment we will be able to run our queries through as pictured below. 
+
+<BR>
+
+![](app/assets/images/railsconsole.png)
+
+2. Feel free to input any one of the queries I have provided below, one for Customer and the other for Transaction.
+3. Once each query successfully returns its results, the environment is ready for an additional query.  
+
+<BR>
+
+_Customer_
+
+This query returns the row within the Customer table associated with the first_name column for **_simone_**.
+
+>`Customer.find_by(first_name: "simone")` 
+
+![](app/assets/images/TerminalCustomer.png)
+
+_Transaction_
+
+This query returns the Amount column within the Transaction table for **_all values greater than 10_** (note: this data object is a string).
+
+>`Transaction.where("amount > ?", "10")`
+
+![](app/assets/images/TerminalTransaction.png)
+
+
+
 <br>
 
-#### pgAdmin
+#### **pgAdmin**
 ---
 
-1. 
+0. Open pgAdmin in your browser. The opening screen should look like the image below.
+
+![](app/assets/images/pgAdminOpeningScreen.png)
+
+The left vertifcal pane displays an object browser where you can view available servers, databases, users and other objects. Across the top of the screen is a collection of menu items, and below those are tabs to display various aspects of database objects and performance. 
+
+1. In the object browser expand the plus (+) to the left of the Servers node to show the default server. Depending on your operating system, the default server name could be _localhost_ or _PostgreSQL x_, where x is the version number.
+2. Double-click the server name. Enter the password you chose during installation if prompted. A brief message appears while pgAdmin is establishing a connection. When you're connected, several new object items sholuld display under the server name. 
+3. Expand _Databases_ and then expand the default database postgres.
+4. Under postgres, expand the Schemas object, and then expand public.  
+
+1. Run PostgreSQL. On macOS, you must double-click Postgres.app in your applications folder.
+2. Launch pgAdmin. In the left vertical pane (the object browser) expand the plus sign to the left of the Servers node to show the default server. Depending on how you installed PostgreSQL, the default server may be named localhost or PostgreSQL x, where x is the version of the application.
+3. Double-click the server name. If you supplied a password during installation, enter it at the prompt. You'll see a brief message that pgAdmin is establishing a connection.
+4. In pgAdmin's object browser, expand **Databases** and click once on the postgres database to highlight it.
+5. Open the Query tool by choosing **Tools > Query Tool**. 
+6. In the SQL Editor pane (the top horizontal pane), type or copy the code
+7. Click the play icon to execute the statement. In the Output pane in the Query Tool under Messages you'll see a notice indicating that the query returned successfully. 
+
+
+<br>
+
+_Customer_
+
+This query returns the all rows within the Customer table associated with the first_name, last_name, and email columns.
+
+![](app/assets/images/pgAdminCustomers.png)
+
+
+_Transaction_
+
+This query returns the Amount column within the Transaction table for **_all values greater than 100_** (note: this data object is a string).
+
+![](app/assets/images/pgAdminTransaction.png)
+
 
 <br>
 
