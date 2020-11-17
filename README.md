@@ -265,6 +265,7 @@ The left vertifcal pane displays an object browser where you can view available 
 <BR>
 ##### Running Queries using pgAdmin
 ---
+
 1. Run PostgreSQL. On macOS, you must double-click Postgres.app in your applications folder.
 2. Launch pgAdmin. In the left vertical pane (the object browser) expand the plus sign to the left of the Servers node to show the default server. Depending on how you installed PostgreSQL, the default server may be named localhost or PostgreSQL x, where x is the version of the application.
 3. Double-click the server name. If you supplied a password during installation, enter it at the prompt. You'll see a brief message that pgAdmin is establishing a connection.
