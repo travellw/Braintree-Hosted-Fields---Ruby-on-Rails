@@ -42,7 +42,7 @@ The Branitree Hosted Fields Integration outlined throughout this documentation i
 ![](app/assets/images/hostedfieldsprojectexample.png) 
 Note: It is important that you have the frameworks and languages associated with this project installed on your machine before proceeding. I have included links to each one under the **Architecture** heading to assist with this. 
 
-0. If you haven't already, head over to Braintree and sign up for a [free sandbox account](https://www.braintreepayments.com/sandbox). After signing up, login and locate your important gateway credentials (review the Braintree support article entitled  [Important Gateway Credentials](https://articles.braintreepayments.com/control-panel/important-gateway-credentials) for assistance with this). Keep these values accessible throughout the  project setup and integration testing as they will be needed.
+0. If you haven't already, head over to Braintree and sign up for a [free sandbox account](https://www.braintreepayments.com/sandbox). After signing up, login and locate your important gateway credentials; Merchant ID, Private Key, and Public Key (review the Braintree support article entitled  [Important Gateway Credentials](https://articles.braintreepayments.com/control-panel/important-gateway-credentials) for assistance with this). Keep these values accessible throughout the  project setup and integration testing as they will be needed.
 1. Save the project zip file to your machine and navigate to the project's directory within your terminal.
 2. Once in the project's directory, run the command <br> 
 >`bundle install` 
@@ -54,10 +54,6 @@ Note: It is important that you have the frameworks and languages associated with
 5. Return to the project's directory within your terminal and run the command  <br>
 >`rails server` 
 6. The project should be loading on your localhost server as indicated by terminal activity and you should now be able to see the project in your browser as pictured above.
-
-
-Happy Testing!
-
 
 <BR>
 
@@ -98,17 +94,17 @@ transaction​ using this stored payment method token
 ### Overview
 ---
 
-This portion of the project requires no additional installtion steps. After following the steps listed in the project setup section, you should be able to perform tests via the application in your browser.  
+This portion of the project requires no additional installation steps. After following the steps listed in the project setup section, you should be able to perform tests via the application in your browser.  
 
 ### Testing
 ---
-In order to test this integration against the various contraints listed above (or ones you come up with), it is recommended that you use [Braintree Sandbox's test credit card values](https://developers.braintreepayments.com/guides/credit-cards/testing-go-live/ruby) in creating transactions. You can create customers using any criteria as long as the following are provided:
+In order to test this integration against the various contraints listed above (or ones you come up with), it is recommended that you use [Braintree's test credit card values](https://developers.braintreepayments.com/guides/credit-cards/testing-go-live/ruby) in creating transactions. You can create customers using any criteria as long as the following are provided:
 * First Name
 * Last Name
 * Email 
 * Phone Number (must be a numerical value)
 
-Transactions can be searched within your Braintree Sandbox using the **Transactions** (shown below) button located in the top right corner of the Control Panel's navigation bar. Clicking this button will yield a search panel. This [search panel within the Control Panel](https://articles.braintreepayments.com/control-panel/search) allows you to query transactions and customers that you create from testing. 
+Transactions can be searched within your Braintree Sandbox using the **Transactions** button (shown below) located on the Control Panel's navigation bar. Clicking this button will yield a search panel. This [search panel within the Control Panel](https://articles.braintreepayments.com/control-panel/search) allows you to query transactions and customers that you create from testing. 
 
 ![](app/assets/images/braintreenavigationbar.png)
 
@@ -142,29 +138,43 @@ customer information from the database
 
 ### Overview 
 ---
-This integration is designed to store the transaction and customer information created during part one testing within a PostgreSQL database. I provide steps on seeding the database in addition to executable queries using your terminal or pgAdmin, a database visualization tool, below. 
+This integration is designed to store the transaction and customer information created during part one testing within a PostgreSQL database. I have provided steps below on seeding the database as well as executable queries using your terminal or pgAdmin (a database visualization tool). 
 <br>
 ### Schema
 ---
+This schema outlines the database's rows, columns, and tables using pre-created data found in the **seeds.rb** file. It also gives an idea of how and what data will be saved in it from testing conducted during Part One. 
+
+<BR>
+
 **_Customers_**
 | first_name      | last_name | email             | phone            |
 | ----------- | ----------- | ----------- | ----------- |
-| Header      | Title       |             |             |
-| Paragraph   | Text        |             |             |
+| Simone      | deBeauvoir       |     simonedebeauvoir@hey.com        |      0033140000000      |
+| Albert  | Camus        |    albertcamus@hey.com         |     21321305434        |
+| Soren         |  Kierkegaard            |   sorenkierkegaard@hey.com          |        40854171     |
+|   Frantz           |     Fanon             |          frantzfranon@hey.com        |     596700555822           |
+|     Friedrich              |     Nietzsche              |        friedrichnietzsche@hey.com             |        5417543010            |
+|                   |                      |                     |                    |
+
 <br>
 
 **_Transactions_**
 | braintree_id      | amount | status             | customer_id            |
 | ----------- | ----------- | ----------- | ----------- |
-| Header      | Title       |             |             |
-| Paragraph   | Text        |             |             |
+| null      | 100       |      Settled       |       1      |
+| null   | 200        |     Settled        |         2    |
+| null   | 300        |     Settled        |         3    |
+| null   | 400        |     Settled        |         4    |
+| null   | 500        |     Settled        |         5    |
+| null   | 600        |     Settled        |         6    |
+
 
 <br>
 
 ### Seeding the Database
 --- 
 
-While the testing completed in part one results in customer and transaction information being stored in this database, you are not expected to seed the database from testing alone. I have included a file, **seeds.rb** (db>seeds.rb), that should be used instead to seed the database.
+While the testing completed in Part One results in customer and transaction information being stored in this database, you are not expected to seed the database from testing alone. I have included a file, **seeds.rb** (db>seeds.rb), that should be used instead to seed the database. Use the following instructions to do so.
 
 0. Navigate to the project directory within your terminal.
 1. Once inside the directory run the command 
@@ -176,24 +186,10 @@ While the testing completed in part one results in customer and transaction info
 
 <br>
 
-### Installation
+### Installation: pgAdmin
 ---
-For macOS users, I recommend obtaining Postgres.app, an open source macOS application that includes PostgreSQL as well as the PostGIS extension and a few other goodies:
 
-1. Visit http://postgresapp.com/ and download the app's Disk Image file that ends in .dmg.
-2. Double-click the .dmg file to open it, and then drag and drop the app icon into your _applications_ folder.
-3. Double-click the app icon. When Postgres.app opens, click **Initializers** to create and start a PostgreSQL database.
-
-A small elephant icon in your menu bar indicates that you now have a databse running. To use included PostgreSQL command line tools, you'll need to open your Terminal application and run the following code at the prompt.
-
->`sudo mkdir -p /etc/paths.d &&`
-<BR>
-
->`echo /Applications/Postgres.app/Contents/Versions/latest/bin | sudo tee /etc/paths.d/postgressapp`
-
-
-
-If you plan to query the databse using your terminal feel free to move on to the _Queries + Testing_ section using the terminal instructions.
+Note: If you plan to query the databse using your terminal feel free to move on to the _Terminal_ section underneath the _Queries + Testing_ heading. Otherwise, use these instructions to install pgAdmin. In order to use pgAdmin you will need PostgreSQL already installed and running. 
 
 0. Visit the pgAdmin site's page for macOS downloads at _https://www.pgadmin.org/download/pgadmin-4-macos/.
 1. Select the latest version and download the installer (look for a Disk Image file that ends in .dmg).
@@ -265,16 +261,17 @@ The left vertifcal pane displays an object browser where you can view available 
 
 1. In the object browser expand the plus (+) to the left of the Servers node to show the default server. Depending on your operating system, the default server name could be _localhost_ or _PostgreSQL x_, where x is the version number.
 2. Double-click the server name. Enter the password you chose during installation if prompted. A brief message appears while pgAdmin is establishing a connection. When you're connected, several new object items sholuld display under the server name. 
-3. Expand _Databases_ and then expand the default database postgres.
-4. Under postgres, expand the Schemas object, and then expand public.  
-
+3. Expand _Databases_ and then expand the default database postgres.  
+<BR>
+##### Running Queries using pgAdmin
+---
 1. Run PostgreSQL. On macOS, you must double-click Postgres.app in your applications folder.
 2. Launch pgAdmin. In the left vertical pane (the object browser) expand the plus sign to the left of the Servers node to show the default server. Depending on how you installed PostgreSQL, the default server may be named localhost or PostgreSQL x, where x is the version of the application.
 3. Double-click the server name. If you supplied a password during installation, enter it at the prompt. You'll see a brief message that pgAdmin is establishing a connection.
-4. In pgAdmin's object browser, expand **Databases** and click once on the postgres database to highlight it.
+4. In pgAdmin's object browser, expand **Databases** to confirm that the **Braintree_Homework_API_Final** test and development databases exist within the hiearchy.(If it does not, use the _Troubleshooting_ portion of this document to help.) 
 5. Open the Query tool by choosing **Tools > Query Tool**. 
-6. In the SQL Editor pane (the top horizontal pane), type or copy the code
-7. Click the play icon to execute the statement. In the Output pane in the Query Tool under Messages you'll see a notice indicating that the query returned successfully. 
+6. In the SQL Editor pane (the top horizontal pane), feel free to type one of the queries shared below for customer or transaction.
+7. Click the play icon to execute the statement. In the Output pane in the Query Tool under Messages you'll see a notice indicating that the query returned successfully alongside its results. 
 
 
 <br>

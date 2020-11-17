@@ -6,17 +6,17 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Customer.create(first_name: 'simone', last_name: 'deBeauvoir', email: 'simonedebeauvoir@hey.com', phone: '0033140000000')
-Customer.create(first_name: 'albert', last_name: 'camus', email: 'albertcamus@hey.com', phone: '21321305434')
+Customer.create(first_name: 'Simone', last_name: 'deBeauvoir', email: 'simonedebeauvoir@hey.com', phone: '0033140000000')
+Customer.create(first_name: 'Albert', last_name: 'camus', email: 'albertcamus@hey.com', phone: '21321305434')
 Customer.create(first_name: 'soren', last_name: 'kierkegaard', email: 'sorenkierkegaard@hey.com', phone: '40854171')
 Customer.create(first_name: 'frantz', last_name: 'fanon', email: 'frantzfranon@hey.com', phone: '596700555822')
 Customer.create(first_name: 'friedrich', last_name: 'nietzsche', email: 'friedrichnietzsche@hey.com', phone: '5417543010')
-Transaction.create(amount: '100', customer_id: 1)
-Transaction.create(amount: '200', customer_id: 2)
-Transaction.create(amount: '300', customer_id: 3)
-Transaction.create(amount: '400', customer_id: 4)
-Transaction.create(amount: '500', customer_id: 4)
-Transaction.create(amount: '600', customer_id: 5)
+Transaction.create(amount: '100', status: 'Setteld', customer_id: 1)
+Transaction.create(amount: '200', status: 'Setteld', customer_id: 2)
+Transaction.create(amount: '300', status: 'Setteld', customer_id: 3)
+Transaction.create(amount: '400', status: 'Setteld', customer_id: 4)
+Transaction.create(amount: '500', status: 'Setteld', customer_id: 4)
+Transaction.create(amount: '600', status: 'Setteld', customer_id: 5)
 
 #seed this data using the rails db:seed command and then use the command lline to make queries
 
