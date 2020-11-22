@@ -46,10 +46,12 @@ Note: It is important that you have the frameworks and languages associated with
 1. Save the project zip file to your machine and navigate to the project's directory within your terminal.
 2. Once in the project's directory, run the command <br> 
 >`bundle install` 
-3. After all of the ruby gem files have successfully loaded as indicated by your terminal, open the project within your text editor.
-4. From your text editor locate the **braintree.rb** (config>initializers>braintree.rb) file within the project hiearchy and input the corresponding unique gateway credentials associated with your Braintree Sandbox as illustrated below. (see Step 0 for assistance with locating these values)
+3. After all of the ruby gem files have successfully loaded as indicated by your terminal, run the command <br>
+>`rails db:setup`
+4. This command establishes the database for the project on your machine. Once it is established, open the project within your text editor. 
+5. Now we need to set the environment. From your text editor create a **application.yml** within the config folder (app>config) of the project hiearchy.  Input the corresponding unique gateway credentials associated with your Braintree Sandbox as illustrated below. (see Step 0 for assistance with locating these values)
 
-![](app/assets/images/braintreerbfileexample.png)
+![](app/assets/images/environment_example.png)
 
 5. Return to the project's directory within your terminal and run the command  <br>
 >`rails server` 

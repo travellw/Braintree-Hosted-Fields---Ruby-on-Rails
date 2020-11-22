@@ -68,13 +68,13 @@ class CheckoutsController < ApplicationController
       else
         puts "There was a problem with your payment."
         puts result.errors
-        puts result.errors.for(:customer)
+        puts result.errors.for(:customer).deep_errors
         render json: {message: "Error"}
       end
     else
-      puts "There was a problem with your payment."
+      puts "Check your payment."
       puts result.errors
-      puts result.errors.for(:customer)
+      puts result.errors.for(:customer).deep_errors
       render json: {message: "Error"}
     end
   end
