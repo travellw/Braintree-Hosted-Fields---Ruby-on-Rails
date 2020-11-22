@@ -265,6 +265,7 @@ The left vertifcal pane displays an object browser where you can view available 
 2. Double-click the server name. Enter the password you chose during installation if prompted. A brief message appears while pgAdmin is establishing a connection. When you're connected, several new object items sholuld display under the server name. 
 3. Expand _Databases_ and then expand the default database postgres.  
 <BR>
+
 ##### Running Queries using pgAdmin
 ---
 
