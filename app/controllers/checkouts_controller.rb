@@ -9,6 +9,9 @@ class CheckoutsController < ApplicationController
     Braintree::Transaction::Status::Settling,
     Braintree::Transaction::Status::SubmittedForSettlement,
   ]
+
+  @error_message = " "
+
 #generates a client token   
   def new
     @client_token = gateway.client_token.generate
@@ -66,16 +69,20 @@ class CheckoutsController < ApplicationController
         puts "Your transaction was created successfully."
         render json: {message: "Success"}
       else
+        @error_message = "you transaction did not go through"
         puts "There was a problem with your payment."
         puts result.errors
-        puts result.errors.for(:customer).deep_errors
-        render json: {message: "Error"}
+        # puts result.errors.for(:customer).deep_errors
+        # render json: {message: "Error"}
+        render 'new'
       end
     else
+      @error_message = 'check your payment'
       puts "Check your payment."
       puts result.errors
-      puts result.errors.for(:customer).deep_errors
-      render json: {message: "Error"}
+      # puts result.errors.for(:customer).deep_errors
+      # render json: {message: "Error"}
+      render 'new'
     end
   end
 
