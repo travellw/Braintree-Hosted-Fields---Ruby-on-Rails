@@ -42,7 +42,12 @@ The Branitree Hosted Fields Integration outlined throughout this documentation i
 ![](app/assets/images/hostedfieldsprojectexample.png) 
 Note: It is important that you have the frameworks and languages associated with this project installed on your machine before proceeding. I have included links to each one under the **Architecture** heading to assist with this. 
 
-0. If you haven't already, head over to Braintree and sign up for a [free sandbox account](https://www.braintreepayments.com/sandbox). After signing up, login and locate your important gateway credentials; Merchant ID, Private Key, and Public Key (review the Braintree support article entitled  [Important Gateway Credentials](https://articles.braintreepayments.com/control-panel/important-gateway-credentials) for assistance with this). Keep these values accessible throughout the  project setup and integration testing as they will be needed.
+0. If you haven't already, head over to Braintree and sign up for a [free sandbox account](https://www.braintreepayments.com/sandbox). After signing up, login and locate your important gateway credentials; Merchant ID, Private Key, and Public Key (review the Braintree support article entitled  [Important Gateway Credentials](https://articles.braintreepayments.com/control-panel/important-gateway-credentials) for assistance with this). Keep these values accessible throughout the  project setup and integration testing as they will be needed. 
+
+<br>
+
+**_Keep in mind that this is a simple Hosted Fields integration. It is not designed to work with any of Braintree's fraud tools, digital wallets, or specialized processing options._**
+
 1. Save the project zip file to your machine and navigate to the project's directory within your terminal.
 2. Once in the project's directory, run the command <br> 
 >`bundle install` 
@@ -179,8 +184,8 @@ This schema outlines the database's rows, columns, and tables using pre-created 
 While the testing completed in Part One results in customer and transaction information being stored in this database, you are not expected to seed the database from testing alone. I have included a file, **seeds.rb** (db>seeds.rb), that should be used instead to seed the database. Use the following instructions to do so.
 
 0. Navigate to the project directory within your terminal.
-1. Once inside the directory run the command 
->`rails db:seed`
+1. Once inside the directory, if you haven't already during project setup, run the command 
+>`rails db:setup`
 2. Rails is not expressive after this command. It simply moves the cursor in preparation for another command. This means we're ready to query the database. 
 
 ![](app/assets/images/seeding.png)
@@ -193,7 +198,7 @@ While the testing completed in Part One results in customer and transaction info
 
 Note: If you plan to query the databse using your terminal feel free to move on to the _Terminal_ section underneath the _Queries + Testing_ heading. Otherwise, use these instructions to install pgAdmin. In order to use pgAdmin you will need PostgreSQL already installed and running. 
 
-0. Visit the pgAdmin site's page for macOS downloads at _https://www.pgadmin.org/download/pgadmin-4-macos/.
+0. Visit the pgAdmin site's page for macOS downloads at _https://www.pgadmin.org/download/pgadmin-4-macos/_.
 1. Select the latest version and download the installer (look for a Disk Image file that ends in .dmg).
 2. Double-click the .dmg file, click through the prompt to accept the terms, and then drag pgAdmin's elepgant app icon into your _Applications_ folder. 
 3. Double-click the app icon to launch pgAdmin.
@@ -263,19 +268,21 @@ The left vertifcal pane displays an object browser where you can view available 
 
 1. In the object browser expand the plus (+) to the left of the Servers node to show the default server. Depending on your operating system, the default server name could be _localhost_ or _PostgreSQL x_, where x is the version number.
 2. Double-click the server name. Enter the password you chose during installation if prompted. A brief message appears while pgAdmin is establishing a connection. When you're connected, several new object items sholuld display under the server name. 
-3. Expand _Databases_ and then expand the default database postgres.  
+3. Expand _Databases_ and then expand the default database postgres. This should confirm that your PostgreSQL databases are connected to the pgAdmin. If they are not, make sure that Postgres.app is running.   
 <BR>
 
 ##### Running Queries using pgAdmin
 ---
 
-1. Run PostgreSQL. On macOS, you must double-click Postgres.app in your applications folder.
+1. Make sure that PostgreSQL is running. On macOS, if you have the Postgres.app, you must lick the **Start** button within the applications to do so.
+
+![](app/assets/images/postgresappexample.png)
 2. Launch pgAdmin. In the left vertical pane (the object browser) expand the plus sign to the left of the Servers node to show the default server. Depending on how you installed PostgreSQL, the default server may be named localhost or PostgreSQL x, where x is the version of the application.
 3. Double-click the server name. If you supplied a password during installation, enter it at the prompt. You'll see a brief message that pgAdmin is establishing a connection.
-4. In pgAdmin's object browser, expand **Databases** to confirm that the **Braintree_Homework_API_Final** test and development databases exist within the hiearchy.(If it does not, use the _Troubleshooting_ portion of this document to help.) 
+4. In pgAdmin's object browser, expand **Databases** to confirm that the **Braintree_Homework_API_Final** test and development databases exist within the hiearchy. 
 5. Open the Query tool by choosing **Tools > Query Tool**. 
 6. In the SQL Editor pane (the top horizontal pane), feel free to type one of the queries shared below for customer or transaction.
-7. Click the play icon to execute the statement. In the Output pane in the Query Tool under Messages you'll see a notice indicating that the query returned successfully alongside its results. 
+7. Click the play button icon to execute the statement. In the Output pane in the Query Tool under Messages you'll see a notice indicating that the query returned successfully alongside its results. 
 
 
 <br>
@@ -304,4 +311,11 @@ DeBarros, A. "Chapter 4: Importing and Exporting Data." *Practical SQL: A Beginn
 DeBarros, A. "Chapter 6: Joining Tables in a Relational Database." *Practical SQL: A Beginner's Guide to Storytelling With Data,* Edited by No Startch Press. San Francisco. 2018, pp.73-91.   
 
 DeBarros, A. "Chapter 7: Table Design that Works for You." *Practical SQL: A Beginner's Guide to Storytelling With Data,* Edited by No Startch Press. San Francisco. 2018, pp.93-112.   
+
+<br>
+
+## Troubleshooting
+---
+
+
 

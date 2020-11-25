@@ -10,12 +10,12 @@ class CheckoutsController < ApplicationController
     Braintree::Transaction::Status::SubmittedForSettlement,
   ]
 
-  @error_message = " "
+  @error_message = "Get Help "
 
 #generates a client token   
   def new
     @client_token = gateway.client_token.generate
-    pp 'client_token', @client_token 
+    pp 'client_token', @client_token
   end
 
   def create
@@ -23,6 +23,7 @@ class CheckoutsController < ApplicationController
     @nonce_from_the_client = params["payment_method_nonce"]
     # @customer.id = params["result.customer.id"]
     
+
     #create the customer using a nonce
     result = gateway.customer.create(
       first_name: params[:first_name],
@@ -72,6 +73,7 @@ class CheckoutsController < ApplicationController
         @error_message = "you transaction did not go through"
         puts "There was a problem with your payment."
         puts result.errors
+        puts result.message
         # puts result.errors.for(:customer).deep_errors
         # render json: {message: "Error"}
         render 'new'
@@ -80,6 +82,7 @@ class CheckoutsController < ApplicationController
       @error_message = 'check your payment'
       puts "Check your payment."
       puts result.errors
+      puts result.message
       # puts result.errors.for(:customer).deep_errors
       # render json: {message: "Error"}
       render 'new'
