@@ -10,7 +10,7 @@ class CheckoutsController < ApplicationController
     Braintree::Transaction::Status::SubmittedForSettlement,
   ]
 
-  @error_message = "Get Help "
+# @error_message = "Get Help " (only if deciding to use embedded ruby in view)
 
 #generates a client token   
   def new
@@ -23,7 +23,6 @@ class CheckoutsController < ApplicationController
     @nonce_from_the_client = params["payment_method_nonce"]
     # @customer.id = params["result.customer.id"]
     
-
     #create the customer using a nonce
     result = gateway.customer.create(
       first_name: params[:first_name],
@@ -33,7 +32,7 @@ class CheckoutsController < ApplicationController
       payment_method_nonce: @nonce_from_the_client,
       credit_card: {
        options: {
-        #successful verifictaion automatically stores in Vault 
+        #successful verifictaion automatically stores in Vault/two birds, one stone 
         verify_card: true
        }  
       } 
@@ -68,24 +67,23 @@ class CheckoutsController < ApplicationController
         puts result.transaction.id
         @transaction.save
         puts "Your transaction was created successfully."
-        render json: {message: "Success"}
+        # render json: { "Success" }
       else
-        @error_message = "you transaction did not go through"
+        error_message = result.message
         puts "There was a problem with your payment."
         puts result.errors
         puts result.message
-        # puts result.errors.for(:customer).deep_errors
         # render json: {message: "Error"}
-        render 'new'
+        # render 'new'
       end
     else
-      @error_message = 'check your payment'
+      error_message = result.message
       puts "Check your payment."
       puts result.errors
       puts result.message
       # puts result.errors.for(:customer).deep_errors
-      # render json: {message: "Error"}
-      render 'new'
+      # render json: {message: @error_message}
+      # render 'new'
     end
   end
 

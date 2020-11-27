@@ -14,11 +14,14 @@ Rails.application.routes.draw do
 
   get '/success' => "checkouts#success"
   get '/failure' => "checkouts#failure"
-  get '/server_error' => "checkouts#server_errors"
 
   # #generate and expose a client token
   get "/client_token" => "checkouts#new" do
     gateway.client_token.generate
+  end
+
+  get "/checkouts" => "checkouts#create" do
+    error_message = result.message
   end
 
   #receive a payment method nonce from client

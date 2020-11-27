@@ -133,7 +133,7 @@ span.price {
             <label for="last-name"><i class="fa fa-envelope"></i> Last Name </label>
             <input type="text" id="last-name" placeholder="Type your last name here" maxlength="255" required>
             <label for="email"><i class="fa fa-address-card-o"></i> Email Address </label>
-            <input type="text" id="email"  placeholder="Type your email address here" required>
+            <input type="text" id="email"  placeholder="Type your email address here" maxlength="254" required>
             <label for="phone"><i class="fa fa-institution"></i> Phone Number </label>
             <input type="text" id="phone" placeholder="Type your phone number here" required>
           </div>
@@ -253,10 +253,14 @@ span.price {
               var phone = document.querySelector('#phone').value
 
               const data = { payment_method_nonce: payload.nonce, first_name: first_name, last_name: last_name, email: email, phone: phone};
+              
+              console.log('fetch begins here')
               fetch('/checkouts', {
                 method: 'POST', // or 'PUT'
                 headers: {
                   'Content-Type': 'application/json',
+                  "Access-Control-Allow-Origin" : "*", 
+                  "Access-Control-Allow-Credentials" : true, 
                 },
                 body: JSON.stringify(data),
               })
@@ -266,9 +270,12 @@ span.price {
                 window.location.replace("/success");
                 // submit.setAttribute('disabled', true);
               })
-              .catch((error) => {
-                console.error('Error:', error);
+              .catch(error => {
+                console.log("error!");
+                console.log(error);
                 window.location.replace("/failure");
+                // alert(error);
+                console.log(data);
               });
             });
           }, false);
