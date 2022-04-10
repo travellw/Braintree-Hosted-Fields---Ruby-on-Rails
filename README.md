@@ -1,4 +1,4 @@
-# API Support Internal Code Challenge (11/2020)
+# Braintree Hosted Fields - Ruby on Rails (11/2020)
 
 The Branitree Hosted Fields Integration outlined throughout this documentation is my candidate take home assignment for Braintree's API Support team. It is two-parts with the first being a general Hosted Fields Integration built alongside instructions (included) from the hiring team. The second is a PostgreSQL database also built according to instructions (included) provided by the hiring team. 
 
